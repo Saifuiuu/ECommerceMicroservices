@@ -4,41 +4,41 @@ name: CI Pipeline
 #here we will define the trigger when will our automation work
 on:
 
-   push:
-      branches:[main]
-   pull_request:
-      branches:[main]
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
 #here we give our all jobs 
 jobs:
       #job no 1
-     build-and-test:
+  build-and-test:
         # the job will run on ubuntu latest version
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        steps:
+    steps:
          #every step has name and uses (pre define form github)
-         - name: Checkout  code
+      - name: Checkout  code
           #download code from repo to VM
-           uses: actions/Checkout@v4
+        uses: actions/checkout@v4
 
          
-         - name: Setup .Net
+      - name: Setup .Net
          #comand for dotnet sdk installation
-           uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v4
            #with is parameter where i am giving version now
-           with:
+        with:
               dotnet-version: '8.0.x'
 
           # by this command all dependencies will be installed
-         - name: Resotre dependencies
-           run : dotnet restore   
+      - name: Restore dependencies
+        run : dotnet restore   
           # dependencies already installed no resotre needed , 
           # run on release mode:In this mode on debug headache
-         - name: build
-           run : dotnet build --no-resotre  --configuration Release
+      - name: build
+        run : dotnet build --no-restore  --configuration Release
 
           #this command will run test without building and release mode and verbosity is normal
-         - name: Run Tests
-           run: dotnet test --no-build --configuration Release --verbosity normal  
+      - name: Run Tests
+        run: dotnet test --no-build --configuration Release --verbosity normal  
 
