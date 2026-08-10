@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductService.Tests", "Pro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService", "OrderService\OrderService.csproj", "{BB6C619D-1A70-4C5D-A85D-9930FE076583}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.test", "OrderService.Test\OrderService.test.csproj", "{E5B76DC6-5EAE-44F7-8C76-840C5C746807}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderService.test", "OrderService.Test\OrderService.Test.csproj", "{E5B76DC6-5EAE-44F7-8C76-840C5C746807}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
