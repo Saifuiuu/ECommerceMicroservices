@@ -38,7 +38,7 @@ public async Task<ActionResult<IEnumerable<Product>>> GetAll()
 
             if (product==null)
             {
-                return BadRequest($"The product is not found");
+                return NotFound();
             }
             
             return Ok(product);
