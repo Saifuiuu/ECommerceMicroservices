@@ -34,11 +34,13 @@ public async Task<ActionResult<IEnumerable<Product>>> GetAll()
         public async Task<ActionResult<Product>> GetById(int id)
         {
             var product= await _repository.GetByIdAsync(id);
+             
 
             if (product==null)
             {
-                return NotFound();
+                return BadRequest($"The product is not found");
             }
+            
             return Ok(product);
         }
 
@@ -85,7 +87,7 @@ public async Task<ActionResult<IEnumerable<Product>>> GetAll()
               return NotFound();
             
 
-             _repository.DeleteAsync(product);
+            await _repository.DeleteAsync(product);
 
             await _repository.SaveChangesAsync();
             

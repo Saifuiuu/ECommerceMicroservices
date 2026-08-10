@@ -16,10 +16,19 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<ProductDBContext>(Options=>Options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
+
 builder.Services.AddScoped<IProductRepository,ProductRepositories>();
 
 //now the actual app is building 
 var app = builder.Build();
+
+
+using(var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<ProductDBContext>();
+    db.Database.Migrate();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

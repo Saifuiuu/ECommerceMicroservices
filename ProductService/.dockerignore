@@ -3,4 +3,3 @@ obj/
 *.db
 .vs/
 .vscode/
-*.user
