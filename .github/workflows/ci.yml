@@ -49,7 +49,7 @@ jobs:
           password: ${{secrets.DOCKERHUB_TOKEN}}
 
       - name: build push Product service Image
-        uses: docker/build_push_action@v5
+        uses: docker/build-push-action@v5
         with:
            context: ./ProductService
            file: ./ProductService/Dockerfile
@@ -59,7 +59,7 @@ jobs:
 
 
       - name: build and push product service Image
-        uses: docker/build_push_action@v5
+        uses: docker/build-push-action@v5
         with:
           context: ./OrderService
           file: ./OrderService/Dockerfile
