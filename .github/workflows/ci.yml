@@ -51,8 +51,8 @@ jobs:
       - name: build push Product service Image
         uses: docker/build-push-action@v5
         with:
-           context: ./productservice
-           file: ./productservice/Dockerfile
+           context: ./ProductService
+           file: ./ProductService/Dockerfile
            push: true
            tags: ${{secrets.DOCKERHUB_USERNAME}}/productservice:latest
 
@@ -61,8 +61,8 @@ jobs:
       - name: build and push product service Image
         uses: docker/build-push-action@v5
         with:
-          context: ./orderservice
-          file: ./orderservice/Dockerfile
+          context: ./OrderService
+          file: ./OrderService/Dockerfile
           push: true
           tags: ${{secrets.DOCKERHUB_USERNAME}}/orderservice:latest
 
