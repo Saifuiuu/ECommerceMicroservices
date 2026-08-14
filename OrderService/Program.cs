@@ -6,6 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var useAzureDB= builder.Configuration["UseAzureSql"]=="true";
+
+var ConnectionString= builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
@@ -20,9 +24,14 @@ client.BaseAddress=new Uri(ProductServiceUrl)
 
 builder.Services.AddScoped<IOrderRepository,OrderRepository>();
 
-builder.Services.AddDbContext<OrderDbContext>(options=>options.UseSqlite(
-    builder.Configuration.GetConnectionString("DefaultConnection")
-));
+builder.Services.AddDbContext<OrderDbContext>(Options =>
+{
+   if(useAzureDB){
+    Options.UseSqlServer(ConnectionString);}
+    else{
+      Options.UseSqlite(ConnectionString);
+    } 
+});
 
 var app = builder.Build();
 
